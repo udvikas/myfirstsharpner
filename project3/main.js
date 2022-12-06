@@ -81,7 +81,7 @@ function onsubmit(e) {
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`))
 
         userList.appendChild(li).style.backgroundColor = 'cyan';
-        
+       
     
 
         //clear fields
@@ -89,3 +89,39 @@ function onsubmit(e) {
         emailInput.value = '';
     }
 }
+function dataToLocalStorage(event) {
+    event.preventDefault();
+    const name = event.target.userName.value;
+    const email = event.target.emailID.value;
+
+    localStorage.setItem('Name', name);
+    localStorage.setItem('Email', email);
+
+    const myObj = {
+        Name: name,
+        Email: email
+    };
+    const myObj_serialized = JSON.stringify(myObj);
+    localStorage.setItem("Userdetails", myObj_serialized);
+    // console.log(localStorage);
+    
+    const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj"));
+    
+    // console.log(myObj_Deserialized)
+}
+
+
+
+
+// localStorage.setItem('name', 'harry');
+// console.log(localStorage.getItem('name'));
+// localStorage.removeItem('name');
+
+// sessionStorage.setItem('name','peter');
+// console.log(sessionStorage.getItem('name'));
+// sessionStorage.removeItem('name');
+
+
+// document.cookie = 'name=peter; expires=' + new Date(9999, 0, 1).toUTCString();
+// document.cookie = 'lastname= smith; expires=' + new Date(9999, 0, 1).toUTCString();
+// console.log(document.cookie);
